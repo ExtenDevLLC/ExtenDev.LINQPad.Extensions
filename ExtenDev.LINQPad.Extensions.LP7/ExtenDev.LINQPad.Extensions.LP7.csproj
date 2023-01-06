@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>ExtenDev.LINQPad.Extensions</AssemblyName>
+    <RootNamespace>$(AssemblyName)</RootNamespace>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <Import Project="..\ExtenDev.LINQPad.Extensions.Shared\ExtenDev.LINQPad.Extensions.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="LINQPad.Runtime" Version="7.2.7" />
+  </ItemGroup>
+
+</Project>

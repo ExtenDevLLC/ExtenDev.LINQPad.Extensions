@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtenDev.LINQPad.Extensions", "ExtenDev.LINQPad.Extensions\ExtenDev.LINQPad.Extensions.csproj", "{EBCB4AF8-4020-4ACB-9E6C-880B73E9BF82}"
+	ProjectSection(ProjectDependencies) = postProject
+		{15EAB8B9-EEDB-4299-8C47-7DFD94BF1C8E} = {15EAB8B9-EEDB-4299-8C47-7DFD94BF1C8E}
+		{8F833C0E-CD3D-4418-9900-2C27AEE38AB2} = {8F833C0E-CD3D-4418-9900-2C27AEE38AB2}
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ExtenDev.LINQPad.Extensions.Shared", "ExtenDev.LINQPad.Extensions.Shared\ExtenDev.LINQPad.Extensions.Shared.shproj", "{10B0AEBE-8B76-40C7-A36C-E4B6B84EEBBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtenDev.LINQPad.Extensions.LP5", "ExtenDev.LINQPad.Extensions.LP5\ExtenDev.LINQPad.Extensions.LP5.csproj", "{15EAB8B9-EEDB-4299-8C47-7DFD94BF1C8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtenDev.LINQPad.Extensions.LP7", "ExtenDev.LINQPad.Extensions.LP7\ExtenDev.LINQPad.Extensions.LP7.csproj", "{8F833C0E-CD3D-4418-9900-2C27AEE38AB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4A487C8B-10C9-4DB9-9E3B-E5E78AACE4DA}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBCB4AF8-4020-4ACB-9E6C-880B73E9BF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCB4AF8-4020-4ACB-9E6C-880B73E9BF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCB4AF8-4020-4ACB-9E6C-880B73E9BF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCB4AF8-4020-4ACB-9E6C-880B73E9BF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15EAB8B9-EEDB-4299-8C47-7DFD94BF1C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15EAB8B9-EEDB-4299-8C47-7DFD94BF1C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15EAB8B9-EEDB-4299-8C47-7DFD94BF1C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15EAB8B9-EEDB-4299-8C47-7DFD94BF1C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F833C0E-CD3D-4418-9900-2C27AEE38AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F833C0E-CD3D-4418-9900-2C27AEE38AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F833C0E-CD3D-4418-9900-2C27AEE38AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F833C0E-CD3D-4418-9900-2C27AEE38AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD0E9402-44B0-42D7-AE2E-72C7291C397B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ExtenDev.LINQPad.Extensions.Shared\ExtenDev.LINQPad.Extensions.Shared.projitems*{10b0aebe-8b76-40c7-a36c-e4b6b84eebbe}*SharedItemsImports = 13
+		ExtenDev.LINQPad.Extensions.Shared\ExtenDev.LINQPad.Extensions.Shared.projitems*{15eab8b9-eedb-4299-8c47-7dfd94bf1c8e}*SharedItemsImports = 5
+		ExtenDev.LINQPad.Extensions.Shared\ExtenDev.LINQPad.Extensions.Shared.projitems*{8f833c0e-cd3d-4418-9900-2c27aee38ab2}*SharedItemsImports = 5
+	EndGlobalSection
+EndGlobal

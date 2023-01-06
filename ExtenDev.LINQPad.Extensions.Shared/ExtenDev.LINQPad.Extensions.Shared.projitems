@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>10b0aebe-8b76-40c7-a36c-e4b6b84eebbe</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ExtenDev.LINQPad.Extensions</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CollectionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Development\DevelopmentEnvironmentExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DumpContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DumpContextExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HighlightableTerm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\MatchedFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\MatchedFileLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\MatchedPath.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\ProcessWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\SimpleCsvWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NumericExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PreservedQueryItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReflectionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ClickToContinue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\DarkTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ITheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\LightTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\LINQPadOwnerWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ModalDialogExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ModalDialogStack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\OpenWithBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\OpenWithOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\OpenWithSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Theme.cs" />
+  </ItemGroup>
+</Project>

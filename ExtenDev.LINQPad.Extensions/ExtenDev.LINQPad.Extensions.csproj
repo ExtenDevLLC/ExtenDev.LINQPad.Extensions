@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
+
+  <PropertyGroup>
+    <TargetFrameworks>net46;netcoreapp3.1</TargetFrameworks>
+    <IsPackable>true</IsPackable>
+    <PackageVersion>1.0.0.0</PackageVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.xml;.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackageTfmSpecificOutputs</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <ProjectReference Include="..\ExtenDev.LINQPad.Extensions.LP5\ExtenDev.LINQPad.Extensions.LP5.csproj" PrivateAssets="All" />
+    <PackageReference Include="LINQPad" Version="5.40.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <ProjectReference Include="..\ExtenDev.LINQPad.Extensions.LP7\ExtenDev.LINQPad.Extensions.LP7.csproj" PrivateAssets="All" />
+    <PackageReference Include="LINQPad.Runtime" Version="7.2.7" />
+  </ItemGroup>
+
+  <Target Name="PackageTfmSpecificOutputs">
+    <PropertyGroup>
+      <PathToPackage>..\ExtenDev.LINQPad.Extensions.LP7\bin\$(Configuration)\netcoreapp3.1</PathToPackage>
+      <PathToPackage Condition="'$(TargetFramework)' == 'net46'">..\ExtenDev.LINQPad.Extensions.LP5\bin\$(Configuration)\net46</PathToPackage>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(PathToPackage)\$(PackageId).dll" PackagePath="lib\$(TargetFramework)" />
+      <!-- 
+        TODO: Add XML comments to all members, generate XML documentation files
+      -->
+      <TfmSpecificPackageFile Include="$(PathToPackage)\$(PackageId).xml" PackagePath="lib\$(TargetFramework)" Condition="Exists('$(PathToPackage)\$(PackageId).xml')" />
+      <TfmSpecificPackageFile Include="$(PathToPackage)\$(PackageId).pdb" PackagePath="lib\$(TargetFramework)" />
+    </ItemGroup>
+  </Target>
+
+</Project>
