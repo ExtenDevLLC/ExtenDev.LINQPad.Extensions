@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace ExtenDev.LINQPad.Extensions
 {
@@ -10,11 +9,16 @@ namespace ExtenDev.LINQPad.Extensions
     {
         private static Dictionary<string, T> alreadyLoaded = new Dictionary<string, T>();
 
-        public static T GetOrCreateValue(Func<T> factory, [CallerMemberName] string name = null)
+        private static string GetKey(string? name)
         {
             if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
 
-            var dataKey = $"PreservedQueryItem_{name}";
+            return $"PreservedQueryItem_{name}";
+        }
+
+        public static T GetOrCreateValue(Func<T> factory, [CallerMemberName] string? name = null)
+        {
+            var dataKey = GetKey(name);
 
             T ret;
 
@@ -36,6 +40,14 @@ namespace ExtenDev.LINQPad.Extensions
             }
 
             return ret;
+        }
+
+        public static void SetValue(T value, [CallerMemberName] string name = null)
+        {
+            var dataKey = GetKey(name);
+
+            AppDomain.CurrentDomain.SetData(dataKey, value);
+            alreadyLoaded[dataKey] = value;
         }
     }
 }

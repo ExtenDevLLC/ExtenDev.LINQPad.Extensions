@@ -30,7 +30,7 @@ namespace ExtenDev.LINQPad.Extensions.Development
             ProcessWrapper.DumpOutput(ExtensionSettings.TeamFoundationClientExePath, $@"delete ""{path}""");
         }
 
-#if NET46
+#if NET472
         public static string DumpWithSyntaxHightlighting(this string code, SyntaxLanguageStyle language = SyntaxLanguageStyle.XML, string panelTitle = null)
         {
             if (panelTitle == null)

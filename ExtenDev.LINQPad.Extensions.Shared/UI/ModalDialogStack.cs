@@ -7,7 +7,7 @@ using LINQPad.Controls.Core;
 
 namespace ExtenDev.LINQPad.Extensions.UI
 {
-#if NET46
+#if NET472
     internal static class TemporaryWorkaroundExtension
     {
         // TODO: Fix with updated nuget package: https://forum.linqpad.net/discussion/2845/update-linqpad-5-nuget-package/
@@ -162,7 +162,7 @@ namespace ExtenDev.LINQPad.Extensions.UI
 
         static void AddScriptFromUri(string uri)
         {
-#if NET46
+#if NET472
             new Literal($@"<script src=""{uri}""></script>").Dump();
 #else
             Util.HtmlHead.AddScriptFromUri(uri);
@@ -171,7 +171,7 @@ namespace ExtenDev.LINQPad.Extensions.UI
 
         static void AddStyles(string css)
         {
-#if NET46
+#if NET472
             new Literal($@"<style>{css}</style>").Dump();
 #else
             Util.HtmlHead.AddStyles(css);
@@ -180,7 +180,7 @@ namespace ExtenDev.LINQPad.Extensions.UI
 
         static void AddScript(string javascript)
         {
-#if NET46
+#if NET472
             new Literal($@"<script>{javascript}</script>").Dump();
 #else
             Util.HtmlHead.AddScript(javascript);
@@ -189,7 +189,7 @@ namespace ExtenDev.LINQPad.Extensions.UI
 
         static void AddCssLink(string uri)
         {
-#if NET46
+#if NET472
             new Literal($@"<link rel=""stylesheet"" href=""{uri}"" />").Dump();
 #else
             Util.HtmlHead.AddCssLink(uri);

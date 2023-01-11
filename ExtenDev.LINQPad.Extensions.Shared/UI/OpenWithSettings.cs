@@ -22,9 +22,9 @@ namespace ExtenDev.LINQPad.Extensions.UI
         public Dictionary<string, OpenWithOption> DefaultOptionByExtension { get; }
         public Dictionary<string, OpenWithOption> DefaultOptionByExtensionWithLineNumber { get; }
 
-        public OpenWithOption AllLineNumbersDefaultOption { get; set; }
-        public OpenWithOption AllFilesDefaultOption { get; set; }
-        public OpenWithOption AllFoldersDefaultOption { get; set; }
+        public OpenWithOption? AllLineNumbersDefaultOption { get; set; }
+        public OpenWithOption? AllFilesDefaultOption { get; set; }
+        public OpenWithOption? AllFoldersDefaultOption { get; set; }
 
         private OpenWithSettings()
         {
@@ -127,6 +127,7 @@ namespace ExtenDev.LINQPad.Extensions.UI
             // should be configured elsewhere (run once per session or query)
             // - these are primarily used by the OpenWithBox.Show() modal dialog command
 
+            // TODO: VSCode support? Text editor detection? 
             Global.AllFilesOptions.Add(new OpenWithOption("Edit with &Notepad++", @"C:\Program Files\Notepad++\notepad++.exe",
                 "\"{0}\"", "-n{1} \"{0}\""));
 
@@ -139,13 +140,13 @@ namespace ExtenDev.LINQPad.Extensions.UI
                 lineFormatArguments: "17 \"{0}\" {1}"));//, requiresLineNumber: true));
 
             Global.AddOptionForExtension(".sln", new OpenWithOption("Open in Visual Studio",
-                @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe",
+                ExtensionSettings.DevEnvPath,
                 "\"{0}\""));
 
             if (!IsCurrentProcessRunningAsAdmin)
             {
                 Global.AddOptionForExtension(".sln", new OpenWithOption("Open in Visual Studio (As Admin)",
-                @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe",
+                ExtensionSettings.DevEnvPath,
                 "\"{0}\"", requiresAdmin: true));
             }
 
@@ -153,19 +154,19 @@ namespace ExtenDev.LINQPad.Extensions.UI
             {
                 var dir = Path.GetDirectoryName(fullPath);
                 Directory.EnumerateDirectories(dir, "bin", SearchOption.AllDirectories).Concat(Directory.EnumerateDirectories(dir, "obj", SearchOption.AllDirectories)).ForEach(d => Directory.Delete(d, true));
-                ProcessWrapper.DumpOutput(@"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\MSBuild.exe", "\"" + fullPath + "\" /m /t:Restore");
+                ProcessWrapper.DumpOutput(ExtensionSettings.MSBuildPath, "\"" + fullPath + "\" /m /t:Restore");
             });
 
             var build = new OpenWithOption("MSBuild /m /t:Build", (fullPath, lineNumber) =>
             {
-                ProcessWrapper.DumpOutput(@"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\MSBuild.exe", "\"" + fullPath + "\" /m /t:Build");
+                ProcessWrapper.DumpOutput(ExtensionSettings.MSBuildPath, "\"" + fullPath + "\" /m /t:Build");
             });
 
-            var cleanRestoreBuild = new OpenWithOption("Hard Clean and MSBuild /m /t:Restore;Build", (fullPath, lineNumber) =>
+            var cleanRestoreBuild = new OpenWithOption("Hard Clean and MSBuild /m /restore /t:Build", (fullPath, lineNumber) =>
             {
                 var dir = Path.GetDirectoryName(fullPath);
                 Directory.EnumerateDirectories(dir, "bin", SearchOption.AllDirectories).Concat(Directory.EnumerateDirectories(dir, "obj", SearchOption.AllDirectories)).ForEach(d => Directory.Delete(d, true));
-                ProcessWrapper.DumpOutput(@"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\MSBuild.exe", "\"" + fullPath + "\" /m /t:Restore;Build");
+                ProcessWrapper.DumpOutput(ExtensionSettings.MSBuildPath, "\"" + fullPath + "\" /m /restore /t:Build");
             });
 
             Global.AddOptionForExtension(".sln", restorePackages);
@@ -177,7 +178,6 @@ namespace ExtenDev.LINQPad.Extensions.UI
             Global.AddOptionForExtension(".sln", cleanRestoreBuild);
             Global.AddOptionForExtension(".csproj", cleanRestoreBuild);
             Global.AddOptionForExtension(".wixproj", cleanRestoreBuild);
-            //C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\MSBuild.exe
 
             var openNearestSolutionOption = new OpenWithOption("Open Nearest Parent Solution", (fullPath, lineNumber) =>
             {
@@ -202,7 +202,7 @@ namespace ExtenDev.LINQPad.Extensions.UI
             Global.AddOptionForExtension(".csproj", openNearestSolutionOption);
             Global.AllFoldersOptions.Add(openNearestSolutionOption);
 
-#if NET46
+#if NET472
             // TODO: Use CodeMirror
             Global.AddOptionForExtension(".cs", new OpenWithOption("&Dump Highlighted Source", (file, line) => File.ReadAllText(file).DumpWithSyntaxHightlighting(SyntaxLanguageStyle.CSharp)));
 

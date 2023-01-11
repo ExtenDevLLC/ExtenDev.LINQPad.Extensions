@@ -42,15 +42,7 @@ namespace ExtenDev.LINQPad.Extensions.IO
 
         public void GetLatestFromTfs(bool keepOpen = true)
         {
-            ProcessWrapper.DumpOutput("TF.exe", $@"get ""{FullPath}"" /recursive");
-            //		ProcessStartInfo proc = new ProcessStartInfo()
-            //		{
-            //			FileName = @"cmd",
-            //			Arguments = $@"/c echo Getting Latest For ""{FullPath}"" & TF.exe get ""{FullPath}"" /recursive" + (keepOpen ? " & pause" : ""),
-            //			WorkingDirectory = FullPath
-            //		};
-            //		var p = Process.Start(proc);
-            //		p.WaitForExit();
+            ProcessWrapper.DumpOutput(ExtensionSettings.TeamFoundationClientExePath, $@"get ""{FullPath}"" /recursive");
         }
 
         object ToDump() => Util.HorizontalRun(true,
